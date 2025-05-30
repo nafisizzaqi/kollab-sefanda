@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap');
+
+:root {
+  --body: #212529;
+  --dark: #000000;
+}
+
+body {
+  font-family: 'Sora', Arial, sans-serif;
+  background: #e0e0e0;
+  line-height: 1.7;
+  color: var(--body);
+  margin: 0;
+  padding: 0;
+  padding-top: 70px; /* memberi ruang untuk fixed navbar */
+}
+
+h1, h2, h3, h4, h5, h6,
+.display-4 {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+a {
+  color: var(--dark);
+  text-decoration: none;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #7a1010;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  height: 60px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+  width: 120px;
+  height: auto;
+}
+
+.navbar .logo-right {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  margin-left: auto;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar .nav-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #2f7e4c;
+}
+
+.hero {
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: -1;
+}
+
+/* Kode tambahan #teams */
+teams {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+teams .logo {
+  width: 80px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+teams .logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+hr {
+  border: none;
+  height: 3px;
+  background-color: black;
+  margin: 2.5rem 0;
+}
+
+.text-justify p {
+  color: #21252f;
+  text-align: justify;
+}
+
+.card-custom {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  width: 500px;
+  padding: 10px;
+  text-align: center;
+  height: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-left: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card-custom img {
+  border-radius: 20px;
+  width: 85%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.section-desc {
+  font-size: 14px;
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px 20px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .navbar .logo {
+    margin-bottom: 10px;
+  }
+
+  .navbar .logo-right {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+.contact-section {
+  font-family: 'Sora', sans-serif;
+  color: #000;
+}
+
+.contact-section h3 {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.contact-section .form-control {
+  background-color: #c4c4c4;
+  border: none;
+  padding: 10px 15px;
+}
+
+.contact-section .form-control::placeholder {
+  color: #333;
+  font-weight: 500;
+}
