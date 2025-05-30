@@ -32,8 +32,8 @@
     <a class="navbar-brand fw-bold" href="frontend#Home">Kuliner</a>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link active" href="frontend#Home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="frontend#Galerry">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#Galerry">Gallery</a></li>
       </ul>
     </div>
   </div>

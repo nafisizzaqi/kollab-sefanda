@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Home;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,9 @@ class HomeController
     // Menampilkan semua data
     public function index()
     {
-        $homes = Home::all();
-        return view('home.index', compact('homes'));
+        $about = About::first();
+        \Log::info('Data About: ', ['data' => $about]);
+        return view('frontend.index', compact('about'));
     }
 
     // Menampilkan form tambah data

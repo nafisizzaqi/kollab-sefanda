@@ -16,4 +16,8 @@ class About extends Model
         'visi',
         'misi',
     ];
+
+    protected $casts = [
+        'misi' => 'array', // otomatis decode JSON ke array
+    ];
 }

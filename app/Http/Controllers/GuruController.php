@@ -2,69 +2,107 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Home;
+use App\Models\Guru;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 
-class GalleryDetailController extends Controller
+class GuruController
 {
-    // Tampilkan semua data
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $homes = Home::all();
-        return view('home.index', compact('homes'));
+        $gurus = Guru::all();
+        return view('pages.guru.index', compact('gurus'));
     }
 
-    // Form tambah data
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('home.create');
+        return view('pages.guru.create');
     }
 
-    // Simpan data baru
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
-            'image' => 'required|string', // ubah jika upload file
             'title' => 'required|string',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             'description' => 'required|string',
         ]);
 
-        Home::create($request->all());
+        Guru::create([
+            'name' => $request->name,
+            'title' => $request->title,
+            'image' => $request->file('image')->store('guru_images', 'public'), // Simpan file ke storage
+            'description' => $request->description,
+        ]);
 
-        return redirect()->route('home.index')->with('success', 'Data berhasil ditambahkan.');
+        return redirect()->route('pages.guru.index')->with('success', 'Guru berhasil ditambahkan.');
     }
 
-    // Form edit data
-    public function edit($id)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        $home = Home::findOrFail($id);
-        return view('home.edit', compact('home'));
+        //
     }
 
-    // Update data
-    public function update(Request $request, $id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $guru = Guru::findOrFail($id);
+        return view('pages.guru.edit', compact('guru'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Guru $guru)
     {
         $request->validate([
             'name' => 'required|string',
-            'image' => 'required|string',
             'title' => 'required|string',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'description' => 'required|string',
         ]);
 
-        $home = Home::findOrFail($id);
-        $home->update($request->all());
+        $data = [
+            'name' => $request->name,
+            'title' => $request->title,
+            'description' => $request->description,
+        ];
 
-        return redirect()->route('home.index')->with('success', 'Data berhasil diperbarui.');
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($guru->image && Storage::disk('public')->exists($guru->image)) {
+                Storage::disk('public')->delete($guru->image);
+            }
+            // Simpan gambar baru
+            $data['image'] = $request->file('image')->store('guru_images', 'public');
+        }
+
+        $guru->update($data);
+        return redirect()->route('pages.guru.index')->with('success', 'Guru berhasil diperbarui.');
     }
 
-    // Hapus data
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
     {
-        $home = Home::findOrFail($id);
-        $home->delete();
+        $guru = Guru::findOrFail($id);
+        $guru->delete();
 
-        return redirect()->route('home.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('pages.guru.index')->with('success', 'Guru berhasil dihapus.');
     }
 }
