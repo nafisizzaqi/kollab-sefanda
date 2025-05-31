@@ -38,7 +38,7 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/#Galerry">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#Gallery">Gallery</a></li>
         </ul>
       </div>
     </div>

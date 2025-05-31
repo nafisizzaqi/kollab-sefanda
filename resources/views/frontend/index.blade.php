@@ -43,7 +43,7 @@
           <a class="nav-link" href="#About">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#Galerry">Galerry</a>
+          <a class="nav-link" href="#Gallery">Galerry</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#guru">Guru</a>
@@ -156,7 +156,7 @@
             <div class="section-title">PRESTASI</div>
             <div class="section-desc">kejuaraan dari lomba memasak yang ditorehkan siswa kuliner</div>
 </section> --}}
-<section id="gallery" class="py-5">
+<section id="Gallery" class="py-5">
   <div class="container py-5">
     <h2 class="fw-bold text-center mb-4">Gallery</h2>
     <div id="gallery-list" class="row row-cols-1 row-cols-md-2 g-4">
