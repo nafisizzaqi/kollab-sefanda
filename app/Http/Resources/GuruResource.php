@@ -5,9 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AboutResource extends JsonResource
+class GuruResource extends JsonResource
 {
-
     public $status;
     public $message;
     public $resource;
@@ -31,9 +30,8 @@ class AboutResource extends JsonResource
             'data' => [
                 'title' => $this->resource->title,
                 'description' => $this->resource->description,
-                'visi' => $this->resource->visi,
-                'misi' => $this->resource->misi,
-                'logo' => $this->resource->logo, // Sudah URL penuh
+                'image' => $this->resource->image, // Sudah URL penuh
+                'name' => $this->resource->name,
             ]
         ];
     }

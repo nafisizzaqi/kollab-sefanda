@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -28,17 +29,28 @@ class GalleryController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required|file' // atau 'image' => 'required|image' jika upload file
+            'image' => 'required|image'
         ]);
+
+        $slug = Str::slug($request->title);
+
+        // Cek slug unik
+        $originalSlug = $slug;
+        $count = 1;
+        while (Gallery::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
 
         Gallery::create([
             'title' => $request->title,
+            'slug' => $slug,
             'description' => $request->description,
-            'image' => $request->file('image')->store('gallery_images', 'public'), // Simpan file ke storage
+            'image' => $request->file('image')->store('gallery_images', 'public'),
         ]);
 
         return redirect()->route('pages.gallery.index')->with('success', 'Data berhasil ditambahkan.');
     }
+
 
     // Menampilkan form edit
     public function edit($id)
@@ -53,7 +65,7 @@ class GalleryController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required|image',
+            'image' => 'nullable|image',
         ]);
 
         $dataToUpdate = [
@@ -61,12 +73,21 @@ class GalleryController extends Controller
             'description' => $request->description,
         ];
 
+        // Update slug jika title berubah
+        if ($request->title !== $gallery->title) {
+            $slug = Str::slug($request->title);
+            $originalSlug = $slug;
+            $count = 1;
+            while (Gallery::where('slug', $slug)->where('id', '!=', $gallery->id)->exists()) {
+                $slug = $originalSlug . '-' . $count++;
+            }
+            $dataToUpdate['slug'] = $slug;
+        }
+
         if ($request->hasFile('image')) {
-            // Hapus gambar lama jika ada
             if ($gallery->image && Storage::disk('public')->exists($gallery->image)) {
                 Storage::disk('public')->delete($gallery->image);
             }
-            // Simpan gambar baru
             $dataToUpdate['image'] = $request->file('image')->store('gallery_images', 'public');
         }
 
@@ -74,6 +95,7 @@ class GalleryController extends Controller
 
         return redirect()->route('pages.gallery.index')->with('success', 'Data berhasil diperbarui.');
     }
+
 
 
     // Menghapus data

@@ -5,13 +5,11 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AboutResource extends JsonResource
+class GalleryResource extends JsonResource
 {
-
     public $status;
     public $message;
     public $resource;
-
     public function __construct($status, $message, $resource)
     {
         parent::__construct($resource);
@@ -29,11 +27,9 @@ class AboutResource extends JsonResource
             'status' => $this->status,
             'message' => $this->message,
             'data' => [
+                'image' => $this->resource->logo, // Sudah URL penuh
                 'title' => $this->resource->title,
                 'description' => $this->resource->description,
-                'visi' => $this->resource->visi,
-                'misi' => $this->resource->misi,
-                'logo' => $this->resource->logo, // Sudah URL penuh
             ]
         ];
     }

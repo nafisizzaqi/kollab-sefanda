@@ -104,7 +104,10 @@
             <i class="bi bi-info-circle"></i> <span class="ms-2">About</span>
         </a>
         <a href="{{ route('pages.gallery.index') }}" class="{{ request()->routeIs('pages.gallery.*') ? 'active' : '' }}">
-            <i class="bi bi-image"></i> <span class="ms-2">Gallery</span>
+            <i class="bi bi-images"></i> <span class="ms-2">Gallery</span>
+        </a>
+        <a href="{{ route('pages.gallery-detail.index') }}" class="{{ request()->routeIs('pages.gallery-detail.*') ? 'active' : '' }}">
+            <i class="bi bi-image"></i> <span class="ms-2">Gallery Detail</span>
         </a>
         <a href="{{ route('pages.guru.index') }}" class="{{ request()->routeIs('pages.guru.*') ? 'active' : '' }}">
             <i class="bi bi-person-circle"></i> <span class="ms-2">Guru</span>

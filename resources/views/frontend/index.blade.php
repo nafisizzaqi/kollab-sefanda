@@ -87,48 +87,37 @@
 <section id="About" class="py-5 bg-light">
   <div class="container py-5">
     <div class="text-center mb-4">
-      <img src="../assets/img/logokuliner.png" alt="Logo Tata Boga" class="logo mb-3" width="100">
-      <h2 class="fw-bold">Tentang <span class="fst-italic">jurusan kuliner</span></h2>
+      <img id="about-image" src="" alt="Logo About" class="img-fluid mb-3" width="100" />
+      <h2 class="fw-bold">Tentang <span id="about-title" class="fst-italic"></span></h2>
     </div>
     <div class="text-justify">
-      <p>
-        Jurusan Kuliner SMKN 1 Tengaran kita tidak hanya belajar memasak, juga memelajari teknik penyajian makanan
-        dengan memperhatikan 4 aspek, yaitu estetika, kebutuhan nutrisi, citarasa serta kualitas. Selain itu kita juga
-        akan mendalami berbagai pengolahan hidangan dari berbagai negara, mulai dari masakan Nusantara, Oriental food,
-        western food, Pastry and Bakery.
-      </p>
+      <div id="about-description"></div>
       <hr>
       <!--garis-->
       <p class="text-success fw-semibold">
         Untuk mencetak lulusan yang unggul, profesional, dan berdaya saing tinggi, jurusan kuliner memiliki visi & misi
         berikut:
       </p>
-      <div class="row">
-        <div class="col-md-6">
-          <h5><strong>Visi:</strong></h5>
-          <p>
-            Meningkatkan keterampilan siswa dibidang Kuliner sesuai dengan perkembangan, budaya, & keunggulan lokal dan
-            kebutuhan di dunia Kuliner saat ini. Siswa mampu bersaing di dunia kerja atau wirausaha.
-          </p>
-        </div>
-        <div class="col-md-6">
-          <h5><strong>Misi:</strong></h5>
-          <ul>
-            <li>Adanya guest teacher dibidang usaha kuliner dan wirausaha</li>
-            <li>Pembelajaran yang dilakukan secara bertumbuh yang mengacu pada kebutuhan industri</li>
-            <li>Mengembangkan kompetensi siswa dalam produksi dan layanan kuliner</li>
-            <li>Mengintegrasikan teknologi dan keunggulan lokal dalam proses KBM</li>
-            <li>Menyediakan sarana dan prasarana praktik yang lengkap sesuai standar industri</li>
-            <li>Menggunakan pemanfaatan sarana IT dalam proses pembelajaran</li>
-          </ul>
+          <div class="row">
+            <div class="col-md-6">
+              <h5><strong>Visi:</strong></h5>
+              <p id="about-visi"></p>
+            </div>
+            <div class="col-md-6">
+              <h5><strong>Misi:</strong></h5>
+              <ul id="about-misi"></ul>
+            </div>
+          </div>
 </section>
+
+
 </div>
 </div>
 </div>
 </div>
 
 <!--GALERRY-->
-<section id="Galerry" class="py-5">
+{{-- <section id="Galerry" class="py-5">
   <div class="container py-5">
     <h2 class="fw-bold text-center mb-4">Galerry</h2>
     <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -166,10 +155,20 @@
             <img src="../assets/img/Prestasikuliner.jpg" alt="Prestasi">
             <div class="section-title">PRESTASI</div>
             <div class="section-desc">kejuaraan dari lomba memasak yang ditorehkan siswa kuliner</div>
+</section> --}}
+<section id="gallery" class="py-5">
+  <div class="container py-5">
+    <h2 class="fw-bold text-center mb-4">Gallery</h2>
+    <div id="gallery-list" class="row row-cols-1 row-cols-md-2 g-4">
+      
+    </div>
+  </div>
 </section>
 
+
+
 <!-- GURU -->
-<section id="guru" class="py-5 bg-light">
+{{-- <section id="guru" class="py-5 bg-light">
   <div class="container">
     <h2 class="text-center fw-bold mb-5 text-success">Guru</h2>
     <div class="row text-center justify-content-center">
@@ -238,7 +237,16 @@
       </div>
     </div>
   </div>
+</section> --}}
+<section id="guru" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 text-success">Guru</h2>
+    <div id="guru-list" class="row text-center justify-content-center">
+      <!-- Data guru akan muncul di sini -->
+    </div>
+  </div>
 </section>
+
 
 </div>
 </a>
@@ -291,6 +299,10 @@
       </a>
       Copyright © 2025 by @sefanda | All Right Reserved <a href="/teams">Teams</a>
     </p>
+
+    <script src="../assets/js/about.js"></script>
+    <script src="../assets/js/gallery.js"></script>
+    <script src="../assets/js/guru.js"></script>
     </body>
 
     </html>

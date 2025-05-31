@@ -6,6 +6,7 @@ use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GalleryDetailController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\HomeController;
 use App\Models\Home;
@@ -44,6 +45,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/gallery/{gallery}/edit', [GalleryController::class, 'edit'])->name('pages.gallery.edit');
     Route::put('/gallery/{gallery}', [GalleryController::class, 'update'])->name('pages.gallery.update');
     Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('pages.gallery.destroy');
+
+    Route::get('/gallery-detail', [GalleryDetailController::class, 'index'])->name('pages.gallery-detail.index');
+    Route::get('/gallery-detail/create', [GalleryDetailController::class, 'create'])->name('pages.gallery-detail.create');
+    Route::post('/gallery-detail', [GalleryDetailController::class, 'store'])->name('pages.gallery-detail.store');
+    Route::get('/gallery-detail/{gallery}/edit', [GalleryDetailController::class, 'edit'])->name('pages.gallery-detail.edit');
+    Route::put('/gallery-detail/{gallery}', [GalleryDetailController::class, 'update'])->name('pages.gallery-detail.update');
+    Route::delete('/gallery-detail/{gallery}', [GalleryDetailController::class, 'destroy'])->name('pages.gallery-detail.destroy');
     
     Route::get('/guru', [GuruController::class, 'index'])->name('pages.guru.index');
     Route::get('/guru/create', [GuruController::class, 'create'])->name('pages.guru.create');
@@ -55,6 +63,9 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', function (){
     return view('frontend.index');
+});
+Route::get('/gallery-detail/{slug}', function ($slug) {
+    return view('frontend.gallery-detail', ['slug' => $slug]);
 });
 Route::get('/karya', function () {
     return view('frontend.karya');
