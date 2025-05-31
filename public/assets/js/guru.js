@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const guruList = document.getElementById('guru-list');
+  const guruList = document.getElementById('guru-list');
 
-    // HTML fallback (copy dari HTML statis guru kamu)
-    const fallbackHTML = `
+  const fallbackHTML = `
     <div class="col-md-4 mb-4">
       <div class="card border-0">
         <img src="../assets/img/Karina.jpg" alt="Karina Kusumastuti" class="rounded-circle mx-auto d-block"
@@ -68,37 +67,39 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   `;
 
-    fetch('/api/guru')
-        .then(response => {
-            if (!response.ok) throw new Error('Gagal mengambil data guru');
-            return response.json();
-        })
-        .then(data => {
-            const gurus = data.data;
-            console.log(gurus);
-            if (!gurus || gurus.length === 0) {
-                guruList.innerHTML = fallbackHTML;
-                return;
-            }
+  fetch('/api/guru')
+    .then(response => {
+      if (!response.ok) throw new Error('Gagal mengambil data guru');
+      return response.json();
+    })
+    .then(data => {
+      const gurus = data.data;
+      if (!gurus || gurus.length === 0) {
+        guruList.innerHTML = fallbackHTML;
+        return;
+      }
 
-            // Jika ada data, render dinamis
-            guruList.innerHTML = gurus.map(guru => `
-        <div class="col-md-4 mb-4">
-          <div class="card border-0">
-            <img src="${guru.image}" alt="${guru.name}" class="rounded-circle mx-auto d-block"
-              style="width: 150px; height: 150px; object-fit: cover;">
-            <div class="card-body">
-              <h5 class="text-success fw-bold">${guru.name}</h5>
-              <p class="mb-1">${guru.title}</p>
-              <p class="text-muted small">${guru.description || ''}</p>
-            </div>
-          </div>
-        </div>
-      `).join('');
-        })
-        .catch(error => {
-            // Jika error fetch atau error lain, tampilkan fallback
-            guruList.innerHTML = fallbackHTML;
-            console.error(error);
-        });
+      const shortDesc = guru => {
+        if (!guru.description) return '';
+        return guru.description.length > 100 ? guru.description.substring(0, 100) + '...' : guru.description;
+      };
+
+      guruList.innerHTML = gurus.map(guru => `
+                <div class="col-md-4 mb-4">
+                  <div class="card border-0">
+                    <img src="${guru.image}" alt="${guru.name}" class="rounded-circle mx-auto d-block"
+                      style="width: 150px; height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                      <h5 class="text-success fw-bold">${guru.name}</h5>
+                      <p class="mb-1">${guru.title}</p>
+                      <p class="text-muted small">${shortDesc(guru)}</p>
+                    </div>
+                  </div>
+                </div>
+            `).join('');
+    })
+    .catch(error => {
+      guruList.innerHTML = fallbackHTML;
+      console.error(error);
+    });
 });

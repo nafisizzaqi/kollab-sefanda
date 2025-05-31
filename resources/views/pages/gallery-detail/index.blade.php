@@ -33,8 +33,8 @@
                         @endif
                     </td>
                     <td>{{ $detail->title }}</td>
-                    <td>{{ $detail->description }}</td>
-                    <td>{{ $detail->description2 }}</td>
+                    <td>{{ \Illuminate\Support\Str::limit($detail->description, 50, '...') }}</td>
+                    <td>{{ \Illuminate\Support\Str::limit($detail->description2, 50, '...') }}</td>
                     <td>
                         <a href="{{ route('pages.gallery-detail.edit', $detail->id) }}" class="btn btn-warning btn-sm">Edit</a>
 

@@ -19,6 +19,8 @@
                 <th>Title</th>
                 <th>Logo</th>
                 <th>Description</th>
+                <th>Visi</th>
+                <th>Misi</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -35,7 +37,11 @@
                     @endif
                 </td>
 
-                <td>{{ \Illuminate\Support\Str::limit($about->description, 100, '...') }}</td>
+                <td>{{ \Illuminate\Support\Str::limit($about->description, 50, '...') }}</td>
+                <td>{{ \Illuminate\Support\Str::limit($about->visi, 50, '...') }}</td>
+                <td>
+                    {{ is_array($about->misi) ? implode(', ', $about->misi) : $about->misi }}
+                </td>
                 <td>
                     <a href="{{ route('pages.about.edit', $about->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
@@ -49,7 +55,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="4" class="text-center">Belum ada data About.</td>
+                <td colspan="7" class="text-center">Belum ada data About.</td>
             </tr>
             @endforelse
         </tbody>
